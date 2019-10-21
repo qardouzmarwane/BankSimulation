@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>Mon compte</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+		<a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a>
+		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a> <a
+			class="nav-item nav-link" th:href="@{/operations}">Operations</a>
+
+
+	</nav>
+
+	<div class="row" style="margin-top: 30px">
+		<div class="col-2"></div>
+		<div class="col-8 text-center">
+			<div class="card">
+				<div
+					class="card-header text-center bg-primary text-white font-weight-bold">
+					<h3>Consultation du compte</h3>
+				</div>
+				<form th:action="@{/consulterClient}">
+					<div class="input-group mb-3" style="maring-top: 20px">
+						<input type="text" class="form-control"
+							placeholder="Taper le nom d'un client" name="clientName">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary btn-info text-white"
+								type="submit" id="button-addon2">Chercher</button>
+						</div>
+					</div>
+				</form>
+				<div class="card-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Numéro Client</th>
+								<th>Nom</th>
+								<th>E-mail</th>
+							</tr>
+							<tr th:each="o:${listClients}">
+								<td th:text="${o.code}"></td>
+								<td th:text="${o.name}"></td>
+								<td th:text="${o.email}"></td>
+
+							</tr>
+
+						</thead>
+
+					</table>
+					<div class="container">
+						<ul class="pagination justify-content-center">
+							<li th:each="p:${pages}"
+								th:class="${p==pageCourante} ? 'page-item active' : ''"><a
+								class="page-link" th:text="${p}"
+								th:href="@{consulterCompte(nameClient=${nameClient},page=${p})}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-2"></div>
+	</div>
+
+
+
+
+
+	<footer class="footer">
+
+		<div class="footer-copyright text-center py-3">
+			© 2019 Copyright: <a
+				th:href="@{https://www.linkedin.com/in/marwane-qardouz/}"
+				th:target="_blank"> Marwane QARDOUZ</a>
+		</div>
+
+	</footer>
+
+
+
+</body>
+</html>

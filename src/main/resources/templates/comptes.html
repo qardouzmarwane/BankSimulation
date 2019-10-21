@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>Mon compte</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+		<a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a>
+		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a> <a
+			class="nav-item nav-link" th:href="@{/operations}">Operations</a>
+
+
+	</nav>
+
+	<div class="row" style="margin-top: 30px">
+		<div class="col-1"></div>
+		<div class="col-5 text-center">
+			<div class="card">
+				<div
+					class="card-header text-center bg-primary text-white font-weight-bold">
+					<h3>Consultation du compte</h3>
+				</div>
+				<div class="card-body">
+					<form class="form-inline mr-auto" th:action="@{/consulterCompte}"
+						method="get">
+						<input class="form-control mr-sm-2" type="text"
+							placeholder="Chercher un compte..." name="codeCompte" />
+						<button
+							class="btn aqua-gradient btn-outline-secondary btn-rounded btn-sm my-0"
+							type="submit">Chercher</button>
+						<div th:if="${exception}" th:text="${exception.message}"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-5" th:if="${compte}">
+			<div class="card panel-primary">
+				<div class="card-header text-center bg-primary text-white">
+					<h3>Informations Client</h3>
+				</div>
+				<div class="card-body text-center ">
+					<div class="card-title">
+						<label>Code compte :</label> <label class="font-italic"
+							th:text="${compte.codeCompte}"></label>
+					</div>
+					<div class="card-title">
+						<h5>
+							<label>Solde du compte :</label> <label class="font-italic"
+								th:text="${compte.solde}"></label>
+						</h5>
+
+
+					</div>
+					<div class="card-title">
+						<label>Date de création :</label> <label class="font-italic"
+							th:text="${compte.dateCreation}"></label>
+					</div>
+					<div class="card-title">
+						<label>Client :</label> <label class="font-italic"
+							th:text="${compte.client.name}"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-1"></div>
+	</div>
+	<div class="row" th:if="${compte}" style="margin-top: 10px">
+		<div class="col-1"></div>
+		<div class="col-5">
+			<div class="card text-center">
+				<div class="card-header text-center bg-primary text-white">
+					<h3>Réaliser une opération</h3>
+				</div>
+				<div class="card-body">
+					<form th:action="@{/saveOperation}" method="post">
+						<input type="hidden" name="codeCompte" th:value="${codeCompte}" />
+						<div class="btn-group btn-group-toggle" data-toggle="buttons"
+							style="margin-bottom: 5px">
+							<label class="btn btn-primary active"> <input
+								type="radio" name="typeOperation" value="versement"
+								autocomplete="off" checked>Versement
+							</label> <label class="btn btn-primary"> <input type="radio"
+								name="typeOperation" value="retrait" autocomplete="off">
+								Retrait
+							</label> <label class="btn btn-primary"> <input type="radio"
+								name="typeOperation" value="virement" autocomplete="off">
+								Virement
+							</label>
+						</div>
+						<input class="form-control" type="text"
+							placeholder="Montant à verser" name="montant"
+							style="margin-bottom: 5px"> <input class="form-control"
+							type="text" placeholder="Compte du bénéficiaire"
+							name="codeCompte2" style="margin-bottom: 5px">
+						<button type="submit" class="btn btn-primary mb-2">Valider
+							l'opération</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-5">
+			<div class="card panel-primary">
+				<div class="card-header text-center bg-primary text-white">
+					<h3>Liste des opérations</h3>
+				</div>
+				<div class="card-body">
+					<table class="table table-striped">
+						<thead>
+							<tr class="thead-light">
+								<th>Numéro</th>
+								<th>Type</th>
+								<th>Montant</th>
+								<th>Date</th>
+							</tr>
+							<tr th:each="o:${listOperations}">
+								<td th:text="${o.codeOperation}"></td>
+								<td th:text="${o.class.simpleName}"></td>
+								<td th:text="${o.montant}"></td>
+								<td th:text="${o.dateOperation}"></td>
+							</tr>
+
+						</thead>
+
+					</table>
+					<div class="container">
+						<ul class="pagination justify-content-center">
+							<li th:each="p:${pages}" th:class="${p==pageCourante} ? 'page-item active' : ''" ><a  class="page-link" th:text="${p}"
+								th:href="@{consulterCompte(codeCompte=${codeCompte},page=${p})}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-1"></div>
+	</div>
+
+
+
+
+	<footer class="footer">
+
+		<div class="footer-copyright text-center py-3">
+			© 2019 Copyright: <a
+				th:href="@{https://www.linkedin.com/in/marwane-qardouz/}"
+				th:target="_blank"> Marwane QARDOUZ</a>
+		</div>
+
+	</footer>
+
+
+
+</body>
+</html>
