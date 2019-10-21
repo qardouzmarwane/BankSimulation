@@ -56,11 +56,15 @@
 							<tr>
 								<th>Numéro Client</th>
 								<th>Nom</th>
+								<th>Prenom</th>
+								<th>Username</th>
 								<th>E-mail</th>
 							</tr>
 							<tr th:each="o:${listClients}">
 								<td th:text="${o.code}"></td>
-								<td th:text="${o.name}"></td>
+								<td th:text="${o.lastname}"></td>
+								<td th:text="${o.firstname}"></td>
+								<td th:text="${o.username}"></td>
 								<td th:text="${o.email}"></td>
 
 							</tr>

@@ -41,7 +41,11 @@ public class SecondController {
 		
 	}
 
-	
+	@RequestMapping("/clients")
+	public String pageClients()
+	{
+		return "clients";
+	}
 	
 		
 	

@@ -3,12 +3,15 @@ package org.mabanque;
 import org.mabanque.dao.ClientRepository;
 import org.mabanque.dao.CompteRepository;
 import org.mabanque.dao.OperationRepository;
+import org.mabanque.metier.Client;
 import org.mabanque.service.IBanqueMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class MaBanqueApplication implements CommandLineRunner {
@@ -16,6 +19,7 @@ public class MaBanqueApplication implements CommandLineRunner {
 	private ClientRepository clientRepository;
 	@Autowired
 	private CompteRepository compteRepository;
+
 	@Autowired
 	private OperationRepository operationRepository;
 	@Autowired
@@ -28,7 +32,13 @@ public class MaBanqueApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		PasswordEncoder e = new BCryptPasswordEncoder();
 
+		clientRepository.save(new Client("Marwane", "Qardouz", "aa", e.encode("1234"), "ADMIN", "aa@gmail.com"));
+		
+		
+		
 		/*
 		 * banqueMetier.Verser("c1", 1111111111);
 		 * 
