@@ -13,6 +13,7 @@ public interface IBanqueMetier {
 	public void Virement(String codeCompte1, String codeCompte2, double montant);
 	public Page<Operation> ConsulterOperation(String codeCompte, String codeCompte2, int page, int size);
 	public Page<Client> ConsulterClient(String name, int page, int size);
+	public Client ConsulterClient(Long code);
 	
 	
 

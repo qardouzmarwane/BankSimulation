@@ -21,9 +21,9 @@ public class Client implements Serializable{
 	private Date dateNaissance;
 	private String username="";
 	private String password="";
-	private String rolls;
+	private String rolls = "USER";
 	private String email;
-	private Date dateCreation;
+	private Date dateCreation = new Date();
 	private boolean active;
 	public boolean isActive() {
 		return active;

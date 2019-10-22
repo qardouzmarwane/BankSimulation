@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class SecondController {
+public class ClientController {
 	@Autowired
 	IBanqueMetier banqueMetier;
 
@@ -45,6 +45,20 @@ public class SecondController {
 	public String pageClients()
 	{
 		return "clients";
+	}
+	
+	@RequestMapping("/DetailsClient")
+	public String DetailsClient(Model model, Long codeClient)
+	{
+		Client c = banqueMetier.ConsulterClient(codeClient);
+		model.addAttribute("ClientInfos", c);
+		return "detailsclient";
+	}
+	
+	@RequestMapping("/CreationClient")
+	public String CreationClient()
+	{
+		return "creationcompte";
 	}
 	
 		

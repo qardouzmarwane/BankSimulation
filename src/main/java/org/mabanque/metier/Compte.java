@@ -23,7 +23,7 @@ import javax.persistence.OneToMany;
 public abstract class Compte implements Serializable{
 	@Id
 	private String codeCompte;
-	private Date dateCreation;
+	private Date dateCreation = new Date();
 	private double solde;
 	@ManyToOne
 	@JoinColumn(name="CODE_CLIENT")

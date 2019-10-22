@@ -21,7 +21,7 @@ public class BanqueController {
 	@RequestMapping("/comptes")
 	public String index()
 	{
-		return "login";
+		return "comptes";
 	}
 	
 	@RequestMapping("/consulterCompte")

@@ -93,4 +93,9 @@ public class BanqueMetierImplementation implements IBanqueMetier{
 		
 	}
 
+	@Override
+	public Client ConsulterClient(Long code) {
+		return clientRepository.getOne(code);
+	}
+
 }

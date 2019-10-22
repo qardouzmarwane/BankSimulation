@@ -38,58 +38,15 @@
 			<div class="card">
 				<div
 					class="card-header text-center bg-primary text-white font-weight-bold">
-					<h3>Consultation du compte</h3>
-				</div>
-				<div>
-					<form th:action="@{/consulterClient}">
-						<div class="input-group mb-3" style="maring-top: 20px">
-							<input type="text" class="form-control"
-								placeholder="Taper le nom d'un client" name="clientName">
-							<div class="input-group-append">
-								<button class="btn btn-outline-secondary btn-info text-white"
-									type="submit" id="button-addon2">Chercher</button>
-							</div>
-						</div>
-					</form>
-					<div>
-						<button class="btn btn-outline-secondary btn-info text-white" th:href="${/CreationClient}">Créer
-							un client</button>
-					</div>
+					<h3>Fiche Client</h3>
 				</div>
 				<div class="card-body">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Numéro Client</th>
-								<th>Nom</th>
-								<th>Prenom</th>
-								<th>Username</th>
-								<th>E-mail</th>
-							</tr>
-							<tr th:each="o:${listClients}">
-								<td th:text="${o.code}"></td>
-								<td th:text="${o.lastname}"></td>
-								<td th:text="${o.firstname}"></td>
-								<td th:text="${o.username}"></td>
-								<td th:text="${o.email}"></td>
-								<td><form th:action="@{/DetailsClient}">
-										<input type="hidden" th:value="${o.code}" name="codeClient" />
-										<button type="submit" class="btn btn-primary">Details</button>
-									</form></td>
-
-							</tr>
-
-						</thead>
-
-					</table>
-					<div class="container">
-						<ul class="pagination justify-content-center">
-							<li th:each="p:${pages}"
-								th:class="${p==pageCourante} ? 'page-item active' : ''"><a
-								class="page-link" th:text="${p}"
-								th:href="@{consulterCompte(nameClient=${nameClient},page=${p})}"></a>
-							</li>
-						</ul>
+					<div class="card-title">
+						<h3>
+							<label>Nom :</label>
+							<label th:text="${ClientInfos.lastname}"></label>
+							<label th:text="${ClientInfos.firstname}"></label>
+						</h3>
 					</div>
 				</div>
 
