@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Création compte</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+		<a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a>
+		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a>
+		<a class="nav-item nav-link" th:href="@{/operations}">Operations</a>
+	</nav>
+
+
+	<div class="row" style="margin-top: 30px">
+		<div class="col-2"></div>
+		<div class="col-8 text-center">
+			<div class="card">
+				<div
+					class="card-header text-center bg-primary text-white font-weight-bold">
+					<h3>Création d'un client</h3>
+				</div>
+
+				<div class="card-body">
+					<form method="post" th:action="@{saveClient}">
+						
+						<div class="form-group row">
+							<div class="col-6">
+								<label>Adresse e-mail</label> <input type="email"
+									class="form-control" name="email" placeholder="Entrer un email" />
+							</div>
+							<div class="col-6">
+								<label>Username</label> <input type="text"
+									class="form-control" name="username" placeholder="Taper un username" />
+							</div>
+
+						</div>
+						<div class="form-group row">
+							<div class="col-6">
+								<label>Mot de passe</label> <input type="password"
+									name="password" class="form-control"
+									placeholder="Taper un mot de passe" />
+							</div>
+							<div class="col-6">
+								<label>Confirmer votre mot de passe</label> <input
+									type="password" name="password2" class="form-control"
+									placeholder="Retaper votre mot de passe" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-6">
+								<label>Nom</label> <input type="text" name="lastname"
+									class="form-control" placeholder="Nom" />
+							</div>
+							<div class="col-6">
+								<label>Prénom</label> <input type="text" name="firstname"
+									class="form-control" placeholder="Prénom" />
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-6">
+								<label>Date de naissance</label> <input type="date"
+									name="dateNaissance" class="form-control date" />
+							</div>
+
+						</div>
+
+
+
+
+
+						<button type="submit" class="btn btn-primary">Valider</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<div class="col-2"></div>
+	</div>
+
+
+
+
+
+	<footer class="footer">
+
+		<div class="footer-copyright text-center py-3">
+			© 2019 Copyright: <a
+				th:href="@{https://www.linkedin.com/in/marwane-qardouz/}"
+				th:target="_blank"> Marwane QARDOUZ</a>
+		</div>
+
+	</footer>
+</body>
+</html>

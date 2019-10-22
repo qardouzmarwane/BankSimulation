@@ -37,30 +37,20 @@ public class Client implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Client(String firstname, String lastname, String username, String password, String rolls, String email,
-			Collection<Compte> comptes) {
+	
+	
+	
+	public Client(String firstname, String lastname, Date dateNaissance, String username, String password, String rolls,
+			String email) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.dateNaissance = dateNaissance;
 		this.username = username;
 		this.password = password;
 		this.rolls = rolls;
 		this.email = email;
-		this.comptes = comptes;
-		this.active = true;
 	}
-	public Client(String firstname, String lastname, String username, String password, String rolls, String email) {
-		super();
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.password = password;
-		this.rolls = rolls;
-		this.email = email;
-		this.active = true;
-	}
-	
-	
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}

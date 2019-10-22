@@ -28,7 +28,9 @@
 		<a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a>
 		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a>
 		<a class="nav-item nav-link" th:href="@{/operations}">Operations</a>
-
+		<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/logout}">
+		<button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+		</form>
 
 	</nav>
 
@@ -52,8 +54,9 @@
 						</div>
 					</form>
 					<div>
-						<button class="btn btn-outline-secondary btn-info text-white" th:href="${/CreationClient}">Créer
-							un client</button>
+						<a th:href="@{creationClient}"><button
+								class="btn btn-outline-secondary btn-info text-white">Créer
+								un compte</button></a>
 					</div>
 				</div>
 				<div class="card-body">
@@ -62,15 +65,13 @@
 							<tr>
 								<th>Numéro Client</th>
 								<th>Nom</th>
-								<th>Prenom</th>
-								<th>Username</th>
+								<th>Prénom</th>
 								<th>E-mail</th>
 							</tr>
 							<tr th:each="o:${listClients}">
 								<td th:text="${o.code}"></td>
 								<td th:text="${o.lastname}"></td>
 								<td th:text="${o.firstname}"></td>
-								<td th:text="${o.username}"></td>
 								<td th:text="${o.email}"></td>
 								<td><form th:action="@{/DetailsClient}">
 										<input type="hidden" th:value="${o.code}" name="codeClient" />

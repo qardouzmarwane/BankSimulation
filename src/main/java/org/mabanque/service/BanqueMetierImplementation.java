@@ -98,4 +98,12 @@ public class BanqueMetierImplementation implements IBanqueMetier{
 		return clientRepository.getOne(code);
 	}
 
+	@Override
+	public Client saveClient(Client c) {
+		Client p = clientRepository.save(c);
+		return p;
+	}
+
+
+
 }

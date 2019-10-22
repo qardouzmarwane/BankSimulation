@@ -14,6 +14,7 @@ public interface IBanqueMetier {
 	public Page<Operation> ConsulterOperation(String codeCompte, String codeCompte2, int page, int size);
 	public Page<Client> ConsulterClient(String name, int page, int size);
 	public Client ConsulterClient(Long code);
+	public Client saveClient(Client c);
 	
 	
 

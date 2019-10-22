@@ -1,11 +1,18 @@
 package org.mabanque.web;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.mabanque.metier.Client;
 import org.mabanque.metier.Compte;
 import org.mabanque.metier.Operation;
 import org.mabanque.service.IBanqueMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,11 +62,39 @@ public class ClientController {
 		return "detailsclient";
 	}
 	
-	@RequestMapping("/CreationClient")
-	public String CreationClient()
+	@RequestMapping("/creationClient")
+	public String creationClient()
 	{
-		return "creationcompte";
+		return "creationclient";
 	}
+	
+	@RequestMapping(value = "/saveClient", method = RequestMethod.POST)
+	public String saveClient(Model model, String lastname, String firstname, String email, String username, String password, String dateNaissance) throws ParseException
+	{
+		PasswordEncoder en = new BCryptPasswordEncoder();
+		
+		System.out.println(dateNaissance);
+		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateN = d.parse(dateNaissance);
+		try {
+			Client c = new Client(firstname, lastname, dateN, username, en.encode(password), "USER", email);
+			Client p = banqueMetier.saveClient(c);
+			model.addAttribute("ClientInfos", p);
+			return "detailsclient";
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "error";
+	}
+	
+	
+	
+	@RequestMapping("/login")
+	public String login()
+	{
+		return "login";
+	}
+	
 	
 		
 	

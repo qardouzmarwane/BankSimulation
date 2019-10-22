@@ -1,5 +1,7 @@
 package org.mabanque;
 
+import java.util.Date;
+
 import org.mabanque.dao.ClientRepository;
 import org.mabanque.dao.CompteRepository;
 import org.mabanque.dao.OperationRepository;
@@ -35,8 +37,9 @@ public class MaBanqueApplication implements CommandLineRunner {
 		
 		PasswordEncoder e = new BCryptPasswordEncoder();
 
-		clientRepository.save(new Client("Marwane", "Qardouz", "aa", e.encode("1234"), "ADMIN", "aa@gmail.com"));
 		
+		clientRepository.save(new Client("Marwane", "Qardouz", new Date(), "aa", e.encode("1234"), "ADMIN", "aa@gmail.com"));
+
 		
 		
 		/*
