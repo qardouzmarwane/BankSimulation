@@ -26,8 +26,8 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 		<a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a>
-		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a> <a
-			class="nav-item nav-link" th:href="@{/operations}">Operations</a>
+		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a>
+		<a class="nav-item nav-link" th:href="@{/operations}">Operations</a>
 
 
 	</nav>
@@ -41,6 +41,7 @@
 					<h3>Consultation du compte</h3>
 				</div>
 				<div class="card-body">
+					<label th:if="${exception}" th:text="${exception}"></label>
 					<form class="form-inline mr-auto" th:action="@{/consulterCompte}"
 						method="get">
 						<input class="form-control mr-sm-2" type="text"
@@ -148,7 +149,9 @@
 					</table>
 					<div class="container">
 						<ul class="pagination justify-content-center">
-							<li th:each="p:${pages}" th:class="${p==pageCourante} ? 'page-item active' : ''" ><a  class="page-link" th:text="${p}"
+							<li th:each="p:${pages}"
+								th:class="${p==pageCourante} ? 'page-item active' : ''"><a
+								class="page-link" th:text="${p}"
 								th:href="@{consulterCompte(codeCompte=${codeCompte},page=${p})}"></a>
 							</li>
 						</ul>

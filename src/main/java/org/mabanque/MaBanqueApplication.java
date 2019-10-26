@@ -35,12 +35,7 @@ public class MaBanqueApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		PasswordEncoder e = new BCryptPasswordEncoder();
 
-		
-		clientRepository.save(new Client("Marwane", "Qardouz", new Date(), "aa", e.encode("1234"), "ADMIN", "aa@gmail.com"));
-
-		
 		
 		/*
 		 * banqueMetier.Verser("c1", 1111111111);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1" />
+<meta charset="utf-8" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" />
@@ -17,13 +17,13 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<title>Insert title here</title>
+<title>Bienvenu sur mon site web</title>
 </head>
-<body class="text-center">
+<body class="text-center bg-primary">
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 class="text-center text-white mb-4">Bootstrap 4 Login Form</h2>
+				<h2 class="text-center text-black mb-4">Welcome here !</h2>
 				<div class="row">
 					<div class="col-md-6 mx-auto">
 
@@ -47,33 +47,33 @@
 											name="password" autocomplete="new-password">
 										<div class="invalid-feedback">Enter your password too!</div>
 									</div>
-									<div>
-										<label class="custom-control custom-checkbox"> <input
-											type="checkbox" class="custom-control-input"> <span
-											class="custom-control-indicator"></span> <span
-											class="custom-control-description small text-dark">Remember
-												me on this computer</span>
-										</label>
+									<div class="form-group">
+										<label>Vous n'avez pas de compte? </label><a th:href="@{/creationClient}">Enregistrez-vous</a>
 									</div>
 									<button type="submit"
 										class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
 								</form>
 							</div>
-							<!--/card-block-->
 						</div>
-						<!-- /form card login -->
 
 					</div>
 
 
 				</div>
-				<!--/row-->
+
 
 			</div>
-			<!--/col-->
 		</div>
-		<!--/row-->
 	</div>
-	<!--/container-->
+	
+		<footer class="footer">
+
+		<div class="footer-copyright text-center py-3">
+			© 2019 Copyright: <a
+				th:href="@{https://www.linkedin.com/in/marwane-qardouz/}"
+				th:target="_blank"> Marwane QARDOUZ</a>
+		</div>
+
+	</footer>
 </body>
 </html>

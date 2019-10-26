@@ -71,13 +71,13 @@ public class ClientController {
 	@RequestMapping(value = "/saveClient", method = RequestMethod.POST)
 	public String saveClient(Model model, String lastname, String firstname, String email, String username, String password, String dateNaissance) throws ParseException
 	{
-		PasswordEncoder en = new BCryptPasswordEncoder();
+
 		
 		System.out.println(dateNaissance);
 		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateN = d.parse(dateNaissance);
 		try {
-			Client c = new Client(firstname, lastname, dateN, username, en.encode(password), "USER", email);
+			Client c = new Client(firstname, lastname, dateN, username, password, "USER", email);
 			Client p = banqueMetier.saveClient(c);
 			model.addAttribute("ClientInfos", p);
 			return "detailsclient";
@@ -95,6 +95,11 @@ public class ClientController {
 		return "login";
 	}
 	
+	@RequestMapping("/")
+	public String index()
+	{
+		return "redirect:/login";	
+	}
 	
 		
 	

@@ -27,20 +27,21 @@ public class BanqueController {
 	@RequestMapping("/consulterCompte")
 	public String consulter(Model model, String codeCompte, @RequestParam(name = "page", defaultValue = "1") int page, @RequestParam(name = "size", defaultValue="6") int size)
 	{
+				Compte cp = banqueMetier.ConsulterCompte(codeCompte);
 
-			Compte cp = banqueMetier.ConsulterCompte(codeCompte);
-			Page <Operation>listOperations = banqueMetier.ConsulterOperation(codeCompte,codeCompte, page, size);
-			int pageCount = listOperations.getTotalPages();
-			int [] pages = new int[pageCount];
-			for(int i=0; i<pageCount; i++) pages[i]=i+1;
-			
-			model.addAttribute("pages",pages);
-			model.addAttribute("compte",cp);
-			model.addAttribute("listOperations",listOperations);
-			model.addAttribute("pageCourante", page);
-			model.addAttribute("codeCompte", cp.getCodeCompte());
+				Page <Operation>listOperations = banqueMetier.ConsulterOperation(codeCompte,codeCompte, page, size);
+				int pageCount = listOperations.getTotalPages();
+				int [] pages = new int[pageCount];
+				for(int i=0; i<pageCount; i++) pages[i]=i+1;
+				
+				model.addAttribute("pages",pages);
+				model.addAttribute("compte",cp);
+				model.addAttribute("listOperations",listOperations);
+				model.addAttribute("pageCourante", page);
+				model.addAttribute("codeCompte", cp.getCodeCompte());
 
-		return "comptes";
+				return "comptes";
+
 	}
 	
 	@RequestMapping(value = "/saveOperation",method = RequestMethod.POST)
