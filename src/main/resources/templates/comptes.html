@@ -20,17 +20,22 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../static/css/mystyle.css"
+	th:href="@{/css/mystyle.css}" />
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-		<a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a>
-		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a>
-		<a class="nav-item nav-link" th:href="@{/operations}">Operations</a>
-
-
-	</nav>
+	<header>
+		<div class="mycontainer">
+			<nav>
+				<ul>
+					<li><a th:href="@{/comptes}">Comptes</a></li>
+					<li><a th:href="@{/consulterClient}">Clients</a></li>
+					<li><a th:href="@{/operations}">Operations</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 
 	<div class="row" style="margin-top: 30px">
 		<div class="col-1"></div>
@@ -42,15 +47,17 @@
 				</div>
 				<div class="card-body">
 					<label th:if="${exception}" th:text="${exception}"></label>
-					<form class="form-inline mr-auto" th:action="@{/consulterCompte}"
+					<form class="form-inline my-form" th:action="@{/consulterCompte}"
 						method="get">
 						<input class="form-control mr-sm-2" type="text"
 							placeholder="Chercher un compte..." name="codeCompte" />
 						<button
 							class="btn aqua-gradient btn-outline-secondary btn-rounded btn-sm my-0"
 							type="submit">Chercher</button>
-						<div th:if="${exception}" th:text="${exception.message}"></div>
+						<div th:if="${exception}" th:text="${exception}"></div>
 					</form>
+					<a th:href="@{/creationCompte}"><button class="btn btn-primary">Créer
+							un compte</button></a>
 				</div>
 			</div>
 		</div>

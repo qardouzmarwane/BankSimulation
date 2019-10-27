@@ -21,18 +21,22 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 
+<link rel="stylesheet" href="../static/css/mystyle.css"
+	th:href="@{/css/mystyle.css}" />
+
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-		<a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a>
-		<a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a>
-		<a class="nav-item nav-link" th:href="@{/operations}">Operations</a>
-		<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/logout}">
-		<button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
-		</form>
-
-	</nav>
+	<header>
+		<div class="mycontainer">
+			<nav>
+				<ul>
+					<li><a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a></li>
+					<li><a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a></li>
+					<li><a class="nav-item nav-link" th:href="@{/operations}">Operations</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 
 	<div class="row" style="margin-top: 30px">
 		<div class="col-2"></div>

@@ -5,17 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.mabanque.metier.Client;
-import org.mabanque.metier.Compte;
-import org.mabanque.metier.Operation;
 import org.mabanque.service.IBanqueMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Création d'un compte</title>
+<link rel="stylesheet" href="../static/css/mystyle.css"
+	th:href="@{/css/mystyle.css}" />
+</head>
+<body>
+	<header>
+		<div class="mycontainer">
+			<nav>
+				<ul>
+					<li><a class="nav-item nav-link active" th:href="@{/comptes}">Comptes</a></li>
+					<li><a class="nav-item nav-link" th:href="@{/consulterClient}">Clients</a></li>
+					<li><a class="nav-item nav-link" th:href="@{/operations}">Operations</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="container">
+		<div class="my-form">
+			<form class="my-form" method="post" th:action="@{/createAccount}">
+				<div class="my-form-group">
+					<label>Code compte:</label><input type="text" name="codeCompte">
+				</div>
+				<div class="my-form-group">
+					<label>Code client:</label><input type="number" name="codeClient">
+				</div>
+				<div class="my-form-group">
+					<label>Solde:</label><input type="number" name="solde">
+				</div>
+				<div class="my-form-group">
+					<label>Type de compte:</label><input type="radio" name="typeCompte">
+				</div>
+				<div class="x">
+					<button type="submit">Valider</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+</body>
+</html>

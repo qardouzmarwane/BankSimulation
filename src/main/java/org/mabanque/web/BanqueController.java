@@ -1,6 +1,8 @@
 package org.mabanque.web;
 
+import org.mabanque.metier.Client;
 import org.mabanque.metier.Compte;
+import org.mabanque.metier.CompteCourant;
 import org.mabanque.metier.Operation;
 import org.mabanque.service.IBanqueMetier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,10 @@ public class BanqueController {
 	@RequestMapping("/consulterCompte")
 	public String consulter(Model model, String codeCompte, @RequestParam(name = "page", defaultValue = "1") int page, @RequestParam(name = "size", defaultValue="6") int size)
 	{
-				Compte cp = banqueMetier.ConsulterCompte(codeCompte);
+				Compte cp;
+				
+				try {
+				cp = banqueMetier.ConsulterCompte(codeCompte);
 
 				Page <Operation>listOperations = banqueMetier.ConsulterOperation(codeCompte,codeCompte, page, size);
 				int pageCount = listOperations.getTotalPages();
@@ -39,9 +44,16 @@ public class BanqueController {
 				model.addAttribute("listOperations",listOperations);
 				model.addAttribute("pageCourante", page);
 				model.addAttribute("codeCompte", cp.getCodeCompte());
-
+				
 				return "comptes";
-
+				}
+				catch(Exception e)
+				{
+					cp = new CompteCourant();
+					model.addAttribute("exception", e.getMessage());
+					return "comptes";
+					
+				}
 	}
 	
 	@RequestMapping(value = "/saveOperation",method = RequestMethod.POST)
@@ -61,6 +73,21 @@ public class BanqueController {
 		
 			return "redirect:/consulterCompte?codeCompte="+codeCompte;
 	}
+	
+	
+	@RequestMapping(value = "/createAccount" , method = RequestMethod.POST)
+	public String createAccount(String codeCompte, Long codeClient, double solde, String typeCompte)
+	{
+		return "redirect:/comptes?codeCompte=";
+	}
+	
+	
+	@RequestMapping(value = "/creationCompte")
+	public String creerCompte()
+	{
+		return "creationcompte";
+	}
+	
 	
 
 }
